@@ -21,6 +21,7 @@ export function useDebounce({ delay }: UseDebounceProps) {
 		setSearchTerm("");
 		callback();
 	}
+	
 
 	function updateSearchTerm(value: string) {
 		setSearchTerm(value);
