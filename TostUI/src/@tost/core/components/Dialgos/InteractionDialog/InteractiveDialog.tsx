@@ -21,9 +21,7 @@ const InteractiveDialog = forwardRef(function InteractiveDialog(
 
 	return (
 		<Dialog defaultOpen={defaultOpen}>
-			<DialogTrigger className="hidden" ref={buttonRef}>
-				{/* <Button className="hidden"></Button> */}
-			</DialogTrigger>
+			<DialogTrigger className="hidden" ref={buttonRef}></DialogTrigger>
 			<DialogContent className="min-w-min">
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>
