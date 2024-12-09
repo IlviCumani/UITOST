@@ -17,7 +17,7 @@ export default function InnerLabel({
 				</tspan>
 				{innerDataLabel && (
 					<tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className="fill-muted-foreground">
-						{innerDataLabel} //TODO add T
+						{innerDataLabel}
 					</tspan>
 				)}
 			</text>

@@ -1,5 +1,6 @@
 import { Button as BTN } from "@/ui/buttonCN";
-import { LoaderCircle } from "lucide-react";
+import Loader from "../Loader/Loader";
+import { LoaderVariant } from "../Loader/enums/LoaderVariants";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,7 @@ type ButtonProps = {
 	rounded?: "none" | "sm" | "md" | "lg" | "full";
 	reverse?: boolean;
 	rest?: ButtonHTMLAttributes<HTMLButtonElement>;
+	loaderVariant?: LoaderVariant;
 };
 
 const ROUNDED_VARIANT = {
@@ -36,6 +38,7 @@ export default function Button({
 	rounded = "sm",
 	reverse,
 	rest,
+	loaderVariant = LoaderVariant.Circle,
 }: PropsWithChildren<ButtonProps>) {
 	return (
 		<BTN
@@ -51,7 +54,7 @@ export default function Button({
 			)}
 			{...rest}
 		>
-			{loading && <LoaderCircle className="animate-spin" />}
+			{loading && <Loader variant={loaderVariant} className="text-inherit" />}
 			{!loading && icon}
 			{size !== "icon" && children}
 		</BTN>
