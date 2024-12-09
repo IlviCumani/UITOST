@@ -68,17 +68,17 @@ export default function PieChart({
 		return chartData.reduce<Record<string, { label: string; color?: string }>>(
 			(acc, { name }, i) => {
 				acc[name] = {
-					label: name, //TODO add T
+					label: name,
 					color: `hsl(var(--chart-${((i + 1) % 5) + 1}))`,
 				};
 				return acc;
 			},
 			{
-				[dataKey]: { label: dataKey }, //TODO add T
-				...(outerDataKey ? { [outerDataKey]: { label: outerDataKey } } : {}), //TODO add T
+				[dataKey]: { label: dataKey },
+				...(outerDataKey ? { [outerDataKey]: { label: outerDataKey } } : {}),
 			},
 		);
-	}, [chartData, dataKey, outerDataKey]); //TODO add T
+	}, [chartData, dataKey, outerDataKey]);
 
 	return (
 		<Card className="flex flex-col h-full">
@@ -131,7 +131,8 @@ export default function PieChart({
 								<Pie
 									onClick={
 										onSelect !== undefined
-											? (data: PieSectorDataItem) => handleSelect(data.name as string, outerChartData)
+											? (data: PieSectorDataItem) =>
+													handleSelect(data.name as string, outerChartData)
 											: undefined
 									}
 									data={outerChartData}
