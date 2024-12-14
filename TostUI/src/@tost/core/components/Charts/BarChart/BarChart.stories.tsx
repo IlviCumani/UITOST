@@ -49,7 +49,7 @@ export const SingleBar: Story = {
 	args: {
 		chartData: [
 			{ browser: "chrome", visitors: 187 },
-			{ browser: "safari", visitors: 200, fill: "#f00" },
+			{ browser: "safari", visitors: 200 },
 			{ browser: "firefox", visitors: 275 },
 			{ browser: "edge", visitors: 173 },
 			{ browser: "other", visitors: 90 },
