@@ -1,5 +1,6 @@
 export type PieChartDataType = {
-	[key: string]: string | number;
 	name: string;
-	fill: string;
+	fill?: string;
+} & {
+	[key: string]: string | number;
 };

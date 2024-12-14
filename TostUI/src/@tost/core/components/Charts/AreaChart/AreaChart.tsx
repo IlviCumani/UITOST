@@ -92,7 +92,7 @@ export default function AreaChart({
 	}, [showIconConfig, dataKeys]);
 
 	return (
-		<Card>
+		<Card className="flex flex-col h-full">
 			<CardHeader
 				className={`${
 					showSelect ? "flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row" : " "
@@ -116,7 +116,7 @@ export default function AreaChart({
 			</CardHeader>
 			<CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
 				{chartData.length > 0 ? (
-					<ChartContainer config={chartConfig}>
+					<ChartContainer config={chartConfig} className="aspect-auto h-[300px] w-full">
 						<AC
 							accessibilityLayer
 							data={chartData}

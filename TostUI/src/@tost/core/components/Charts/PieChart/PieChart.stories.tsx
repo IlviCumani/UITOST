@@ -10,11 +10,11 @@ const meta: Meta<StoryProps> = {
 	title: "Core/Charts/PieChart",
 	args: {
 		chartData: [
-			{ name: "A", book: 100, fill: "var(--color-A)" },
-			{ name: "B", book: 200, fill: "var(--color-B)" },
-			{ name: "C", book: 300, fill: "var(--color-C)" },
-			{ name: "D", book: 400, fill: "var(--color-D)" },
-			{ name: "E", book: 500, fill: "var(--color-E)" },
+			{ name: "A", book: 100 },
+			{ name: "B", book: 200 },
+			{ name: "C", book: 300 },
+			{ name: "D", book: 400 },
+			{ name: "E", book: 500 },
 		],
 		variant: PieChart.Variant.Full,
 		dataKey: "book",
@@ -65,11 +65,11 @@ export const MultipleCharts: Story = {
 	args: {
 		...Full.args,
 		outerChartData: [
-			{ name: "A", computer: 600, fill: "var(--color-A)" },
-			{ name: "B", computer: 120, fill: "var(--color-B)" },
-			{ name: "C", computer: 250, fill: "var(--color-C)" },
-			{ name: "D", computer: 100, fill: "var(--color-D)" },
-			{ name: "E", computer: 500, fill: "var(--color-E)" },
+			{ name: "A", computer: 600 },
+			{ name: "B", computer: 120 },
+			{ name: "C", computer: 250 },
+			{ name: "D", computer: 100 },
+			{ name: "E", computer: 500 },
 		],
 		outerDataKey: "computer",
 	},

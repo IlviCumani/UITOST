@@ -10,7 +10,6 @@ const meta: Meta<StoryProps> = {
 	title: "Core/Loader/Loader",
 	args: {
 		size: 50,
-		variant: Loader.Variants.Circle,
 		className: "text-primary",
 	},
 	argTypes: {
@@ -34,5 +33,40 @@ export default meta;
 type Story = StoryObj<StoryProps>;
 
 export const Primary: Story = {
+	render: ({ ...args }) => <Loader {...args} />,
+};
+
+export const Circle: Story = {
+	args: {
+		variant: Loader.Variants.Circle,
+	},
+	render: ({ ...args }) => <Loader {...args} />,
+};
+
+export const PinWheel: Story = {
+	args: {
+		variant: Loader.Variants.PinWheel,
+	},
+	render: ({ ...args }) => <Loader {...args} />,
+};
+
+export const Arrow: Story = {
+	args: {
+		variant: Loader.Variants.Arrow,
+	},
+	render: ({ ...args }) => <Loader {...args} />,
+};
+
+export const DoubleArrow: Story = {
+	args: {
+		variant: Loader.Variants.DoubleArrow,
+	},
+	render: ({ ...args }) => <Loader {...args} />,
+};
+
+export const Small: Story = {
+	args: {
+		size: 20,
+	},
 	render: ({ ...args }) => <Loader {...args} />,
 };
