@@ -20,7 +20,7 @@ const DATA_KEY = "value";
 type Props = {
 	title?: string;
 	description?: string;
-	chartData: PieChartDataType[] ;
+	chartData: PieChartDataType[];
 	outerChartData?: PieChartDataType[];
 	variant?: ChartVariant;
 	showTooltipLabel?: boolean;
@@ -74,6 +74,21 @@ export default function PieChart({
 		}));
 	}, [chartData, nameKey]);
 
+	const formattedOuterData = useMemo(() => {
+		if (!outerChartData) return [];
+		return outerChartData.map((item) => ({
+			...item,
+			display: item[outerNameKey || nameKey],
+			name: (item[outerNameKey || nameKey] || "").toString().toLowerCase().replace(/\s/g, ""),
+			fill:
+				item.fill ||
+				`var(--color-${(item[outerNameKey || nameKey] || "")
+					.toString()
+					.toLowerCase()
+					.replace(/\s/g, "")})`,
+		}));
+	}, [outerChartData, outerNameKey, nameKey]);
+
 	const chartConfig = useMemo(() => {
 		return formattedData.reduce<Record<string, { label: string; color?: string }>>(
 			(acc, { name, display }, i) => {
@@ -111,7 +126,7 @@ export default function PieChart({
 								}
 								data={formattedData}
 								dataKey={dataKey}
-								nameKey={'display'}
+								nameKey={"display"}
 								stroke="0"
 								activeIndex={active !== null ? active : undefined}
 								outerRadius={isMultipleCharts ? 60 : undefined}
@@ -145,7 +160,7 @@ export default function PieChart({
 													handleSelect(data.name as string, outerChartData)
 											: undefined
 									}
-									data={outerChartData}
+									data={formattedOuterData}
 									dataKey={outerDataKey!}
 									nameKey={outerNameKey}
 									innerRadius={70}
