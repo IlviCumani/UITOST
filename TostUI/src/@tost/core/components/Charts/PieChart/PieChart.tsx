@@ -20,7 +20,7 @@ const DATA_KEY = "value";
 type Props = {
 	title?: string;
 	description?: string;
-	chartData: PieChartDataType[];
+	chartData: PieChartDataType[] ;
 	outerChartData?: PieChartDataType[];
 	variant?: ChartVariant;
 	showTooltipLabel?: boolean;
@@ -39,7 +39,7 @@ export default function PieChart({
 	title,
 	description,
 	showLegend,
-	chartData,
+	chartData = [],
 	outerChartData,
 	variant = ChartVariant.Full,
 	showTooltipLabel = true,
@@ -56,7 +56,7 @@ export default function PieChart({
 
 	const [active, setActive] = useState<number | null>(null);
 
-	function handleSelect(name: string, data: PieSectorDataItem[] = chartData) {
+	function handleSelect(name: string, data: PieSectorDataItem[] = formattedData) {
 		const index = data.findIndex((item) => item.name === name);
 		setActive(active === index ? null : index);
 		if (onSelect !== undefined) {
@@ -64,11 +64,21 @@ export default function PieChart({
 		}
 	}
 
+	const formattedData = useMemo(() => {
+		return chartData.map((item) => ({
+			...item,
+			display: item[nameKey],
+			name: item[nameKey].toString().toLowerCase().replace(/\s/g, ""),
+			fill:
+				item.fill || `var(--color-${item[nameKey].toString().toLowerCase().replace(/\s/g, "")})`,
+		}));
+	}, [chartData, nameKey]);
+
 	const chartConfig = useMemo(() => {
-		return chartData.reduce<Record<string, { label: string; color?: string }>>(
-			(acc, { name }, i) => {
+		return formattedData.reduce<Record<string, { label: string; color?: string }>>(
+			(acc, { name, display }, i) => {
 				acc[name] = {
-					label: name,
+					label: display.toString(),
 					color: `hsl(var(--chart-${((i + 1) % 5) + 1}))`,
 				};
 				return acc;
@@ -78,7 +88,7 @@ export default function PieChart({
 				...(outerDataKey ? { [outerDataKey]: { label: outerDataKey } } : {}),
 			},
 		);
-	}, [chartData, dataKey, outerDataKey]);
+	}, [formattedData, dataKey, outerDataKey]);
 
 	return (
 		<Card className="flex flex-col h-full">
@@ -99,9 +109,9 @@ export default function PieChart({
 										? (data: PieSectorDataItem) => handleSelect(data.name as string)
 										: undefined
 								}
-								data={chartData}
+								data={formattedData}
 								dataKey={dataKey}
-								nameKey={nameKey}
+								nameKey={'display'}
 								stroke="0"
 								activeIndex={active !== null ? active : undefined}
 								outerRadius={isMultipleCharts ? 60 : undefined}

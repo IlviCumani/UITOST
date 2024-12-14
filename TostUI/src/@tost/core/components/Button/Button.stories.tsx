@@ -14,6 +14,13 @@ const meta: Meta<StoryProps> = {
 	args: {
 		onClick: fn(),
 		children: "Click me",
+		loading: false,
+		disabled: false,
+		reverse: false,
+		variant: "default",
+		size: "default",
+		rounded: "sm",
+		icon: <CheckCheck />,
 	},
 	argTypes: {
 		loaderVariant: {
@@ -31,14 +38,61 @@ type Story = StoryObj<StoryProps>;
 
 export const Primary: Story = {
 	args: {
-		loading: false,
-		disabled: false,
-		reverse: false,
-		variant: "default",
-		size: "default",
-		rounded: "sm",
-		icon: <CheckCheck />,
 		loaderVariant: LoaderVariant.Circle,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Secondary: Story = {
+	args: {
+		variant: "secondary",
+		icon: <CheckCheck />,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Destructive: Story = {
+	args: {
+		variant: "destructive",
+		icon: <CheckCheck />,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Outline: Story = {
+	args: {
+		variant: "outline",
+		icon: <CheckCheck />,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Ghost: Story = {
+	args: {
+		variant: "ghost",
+		icon: <CheckCheck />,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Link: Story = {
+	args: {
+		variant: "link",
+		icon: <CheckCheck />,
+	},
+
+	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
+};
+
+export const Transparent: Story = {
+	args: {
+		variant: "transparent",
+		icon: <CheckCheck />,
 	},
 
 	render: ({ ...args }) => <Button {...args}>{args.children}</Button>,
@@ -47,11 +101,8 @@ export const Primary: Story = {
 export const Loading: Story = {
 	args: {
 		loading: true,
-		disabled: false,
-		reverse: false,
 		variant: "default",
-		size: "default",
-		rounded: "sm",
+
 		icon: <CheckCheck />,
 	},
 
