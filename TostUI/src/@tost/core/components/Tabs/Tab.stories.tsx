@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import Tabs from "./Tab";
 import { Meta, StoryObj } from "@storybook/react";
-import { Clock9 } from "lucide-react";
+import { BookmarkCheck, GalleryVertical, UserRoundCheck, UserRoundX } from "lucide-react";
 
 type StoryProps = ComponentProps<typeof Tabs>;
 
@@ -13,17 +13,32 @@ const meta: Meta<StoryProps> = {
 		tabConfig: [
 			{
 				value: "all",
-				label: "All",
+				label: (
+					<div className="flex gap-4 items-center">
+						All
+						<GalleryVertical />
+					</div>
+				),
 				component: <div>All</div>,
 			},
 			{
 				value: "active",
-				label: "Active",
+				label: (
+					<div className="flex gap-4 items-center text-emerald-400">
+						Active
+						<UserRoundCheck />
+					</div>
+				),
 				component: <div>Active</div>,
 			},
 			{
 				value: "inactive",
-				label: "Inactive",
+				label: (
+					<div className="flex gap-4 items-center text-destructive">
+						Inactive
+						<UserRoundX />
+					</div>
+				),
 				component: <div>Inactive</div>,
 			},
 			{
@@ -31,7 +46,7 @@ const meta: Meta<StoryProps> = {
 				label: (
 					<div className="flex gap-4 items-center">
 						Completed
-						<Clock9 />
+						<BookmarkCheck />
 					</div>
 				),
 				component: <div>Completed</div>,
